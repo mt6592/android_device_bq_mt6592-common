@@ -1,0 +1,57 @@
+#
+# Copyright (C) 2021 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Common Path
+COMMON_PATH := device/bq/mt6592-common
+
+# Arch
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a7
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+
+# Filesystem
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
+
+# Kernel
+BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_BASE := 0x10000000
+BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS := \
+    --base $(BOARD_KERNEL_BASE) \
+    --pagesize $(BOARD_KERNEL_PAGESIZE) \
+    --kernel_offset 0x00008000 \
+    --ramdisk_offset 0x01000000 \
+    --second_offset 0x00f00000 \
+    --tags_offset 0x00000100 \
+    --cmdline "$(BOARD_KERNEL_CMDLINE)"
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE := 4096 # blockdev --getbsz /dev/block/mmcblk0
+BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1283457024
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1237319680
+BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.mt6592
+
+# System Properties
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
+
+# Platform
+TARGET_BOARD_PLATFORM := mt8392

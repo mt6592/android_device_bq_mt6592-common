@@ -1,0 +1,64 @@
+# Wi-Fi 
+wifi.interface=wlan0
+ro.mediatek.wlan.wsc=1
+ro.mediatek.wlan.p2p=1
+mediatek.wlan.ctia=0
+mediatek.wlan.chip=MTK_CONNSYS_MT6592
+mediatek.wlan.module.postfix=_mtk_connsys_mt6592
+persist.mtk.wcn.combo.chipid=-1
+
+# Tethering
+wifi.tethering.interface=ap0
+
+# OpenGL
+ro.opengles.version=131072
+
+# P2P
+wifi.direct.interface=p2p0
+
+# Dalvik
+dalvik.vm.mtk-stack-trace-file=/data/anr/mtk_traces.txt
+persist.mtk.anr.mechanism=1
+
+# USB
+sys.ipo.pwrdncap=2
+ro.sys.usb.storage.type=mtp,adb
+ro.sys.usb.bicr=no
+ro.sys.usb.charging.only=no
+mediatek.extmd.usbport=0
+
+# Audio
+ro.camera.sound.forced=0
+ro.audio.silent=0
+
+# Zygote
+ro.zygote.preload.enable=0
+
+# Screen
+ro.sf.lcd_density=240
+ro.sf.hwrotation=0
+persist.sys.display.clearMotion=0
+persist.clearMotion.fblevel.nrm=255
+persist.clearMotion.fblevel.bdr=255
+qemu.hw.mainkeys=0
+persist.sys.strictmode.visual=0
+persist.sys.strictmode.disable=1
+
+# Bluetooth
+ro.btstack=blueangel
+
+# FM Radio
+persist.radio.fd.counter=15
+persist.radio.fd.off.counter=5
+persist.radio.fd.r8.counter=15
+persist.radio.fd.off.r8.counter=5
+fmradio.driver.enable=1
+
+# DRM
+drm.service.enabled=true
+
+# Thermal
+ter.service.enable=0
+
+# Wireless Display
+wfd.dummy.enable=1

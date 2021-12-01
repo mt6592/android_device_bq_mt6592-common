@@ -1,0 +1,7 @@
+on post-fs-data
+    # Storages
+    mkdir /storage/sdcard0 0700 root root
+    mkdir /storage/sdcard1 0700 root root
+
+    # Force ADB
+    start adbd
