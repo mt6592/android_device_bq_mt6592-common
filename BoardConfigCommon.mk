@@ -39,6 +39,14 @@ BOARD_MKBOOTIMG_ARGS := \
     --tags_offset 0x00000100 \
     --cmdline "$(BOARD_KERNEL_CMDLINE)"
 
+# Global Flags
+BOARD_GLOBAL_CFLAGS += -DMTK_HARDWARE
+BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
+
+# MediaTek Flags
+BOARD_HAS_MTK_HARDWARE := true
+MTK_HARDWARE := true
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 4096 # blockdev --getbsz /dev/block/mmcblk0
 BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
