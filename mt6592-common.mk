@@ -72,6 +72,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/gps/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml
 
+# Lights
+PRODUCT_PACKAGES += \
+    lights.mt6592
+
 # Override GMS Client ID
 PRODUCT_GMS_CLIENTID_BASE := android-bq
 
