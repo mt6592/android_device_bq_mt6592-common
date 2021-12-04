@@ -21,6 +21,9 @@ TARGET_SCREEN_HEIGHT := 1920
 # Common Path
 COMMON_PATH := device/bq/mt6592-common
 
+# Device Overlays
+DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
+
 # Init
 PRODUCT_PACKAGES += \
     fstab.mt6592 \
