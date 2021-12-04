@@ -60,6 +60,9 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-imsi.xml:system/etc/virtual-spn-conf-by-imsi.xml    
 
 # Wi-Fi
+PRODUCT_PACKAGES += \
+    lib_driver_cmd_mt66xx
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(COMMON_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
