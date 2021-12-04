@@ -64,7 +64,11 @@ PRODUCT_COPY_FILES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-    lib_driver_cmd_mt66xx
+    lib_driver_cmd_mt66xx \
+    libwpa_client \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
