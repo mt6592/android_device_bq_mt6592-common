@@ -35,6 +35,9 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/media/player.cfg:system/etc/player.cfg
 
 # Audio
+PRODUCT_PACKAGES += \
+    audio.primary.mt6592
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
     $(COMMON_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
