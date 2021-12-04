@@ -341,6 +341,7 @@ blink_blue(int level, int onMS, int offMS)
 		write_str(BLUE_TRIGGER_FILE, "timer");
 		while (((access(BLUE_DELAY_OFF_FILE, F_OK) == -1) || (access(BLUE_DELAY_OFF_FILE, R_OK|W_OK) == -1)) && i<10) {
 			ALOGD("BLUE_DELAY_OFF_FILE doesn't exist or cannot write!!\n");
+			led_wait_delay(5); // wait for the kernel to creat the delay nodes
 			i++;
 		}
 		write_int(BLUE_DELAY_OFF_FILE, offMS);
