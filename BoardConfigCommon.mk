@@ -89,3 +89,14 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # Platform
 TARGET_BOARD_PLATFORM := mt8392
+
+# Sepolicy
+BOARD_SEPOLICY_DIRS := \
+    $(COMMON_PATH)/sepolicy
+
+BOARD_SEPOLICY_UNION := \
+    device.te \
+    app.te \
+    system.te \
+    netd.te \
+    file_contexts
