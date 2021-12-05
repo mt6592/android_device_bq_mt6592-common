@@ -40,7 +40,8 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.mt6592 \
-    audio.a2dp.default
+    audio.a2dp.default \
+    audio.usb.default
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
