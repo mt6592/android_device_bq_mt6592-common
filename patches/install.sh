@@ -3,7 +3,7 @@
 echo $1
 rootdirectory="$PWD"
 
-dirs="system/core"
+dirs="system/core frameworks/base"
 
 # red + nocolor
 RED='\033[0;31m'

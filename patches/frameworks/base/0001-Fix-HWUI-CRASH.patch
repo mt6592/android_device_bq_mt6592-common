@@ -1,0 +1,24 @@
+diff --git a/libs/hwui/Caches.cpp b/libs/hwui/Caches.cpp
+index 77b66f21..76abcd12 100644
+--- a/libs/hwui/Caches.cpp
++++ b/libs/hwui/Caches.cpp
+@@ -117,16 +117,9 @@ void Caches::initFont() {
+ }
+ 
+ void Caches::initExtensions() {
+-    if (mExtensions.hasDebugMarker()) {
+-        eventMark = glInsertEventMarkerEXT;
+-
+-        startMark = glPushGroupMarkerEXT;
+-        endMark = glPopGroupMarkerEXT;
+-    } else {
+-        eventMark = eventMarkNull;
+-        startMark = startMarkNull;
+-        endMark = endMarkNull;
+-    }
++    eventMark = eventMarkNull;
++    startMark = startMarkNull;
++    endMark = endMarkNull;
+ 
+     if (mExtensions.hasDebugLabel() && (drawDeferDisabled || drawReorderDisabled)) {
+         setLabel = glLabelObjectEXT;
