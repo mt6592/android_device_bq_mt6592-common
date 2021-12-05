@@ -1,0 +1,235 @@
+diff --git a/healthd/BatteryMonitor.cpp b/healthd/BatteryMonitor.cpp
+index 66c4e8e..25e984e 100644
+--- a/healthd/BatteryMonitor.cpp
++++ b/healthd/BatteryMonitor.cpp
+@@ -198,7 +198,7 @@ bool BatteryMonitor::update(void) {
+     props.batteryLevel = mBatteryFixedCapacity ?
+         mBatteryFixedCapacity :
+         getIntField(mHealthdConfig->batteryCapacityPath);
+-    props.batteryVoltage = getIntField(mHealthdConfig->batteryVoltagePath) / 1000;
++    props.batteryVoltage = getIntField(mHealthdConfig->batteryVoltagePath);
+ 
+     props.batteryTemperature = mBatteryFixedTemperature ?
+         mBatteryFixedTemperature :
+diff --git a/init/init.c b/init/init.c
+index 1cce8d8..2eb548b 100644
+--- a/init/init.c
++++ b/init/init.c
+@@ -98,7 +98,7 @@ static int have_console;
+ static char console_name[PROP_VALUE_MAX] = "/dev/console";
+ static time_t process_needs_restart;
+ 
+-static const char *ENV[32];
++static const char *ENV[64];
+ 
+ static unsigned charging_mode = 0;
+ 
+@@ -242,10 +242,12 @@ void service_start(struct service *svc, const char *dynamic_args)
+                 return;
+             }
+ 
++#if 0
+             rc = security_compute_create(mycon, fcon, string_to_security_class("process"), &scon);
+             if (rc == 0 && !strcmp(scon, mycon)) {
+                 ERROR("Warning!  Service %s needs a SELinux domain defined; please fix!\n", svc->name);
+             }
++#endif
+             freecon(mycon);
+             freecon(fcon);
+             if (rc < 0) {
+@@ -790,10 +792,7 @@ static void export_kernel_boot_props(void)
+ 
+     /* if this was given on kernel command line, override what we read
+      * before (e.g. from /proc/cpuinfo), if anything */
+-    ret = property_get("ro.boot.hardware", tmp);
+-    if (ret)
+-        strlcpy(hardware, tmp, sizeof(hardware));
+-    property_set("ro.hardware", hardware);
++    property_set("ro.hardware", "mt6592");
+ 
+     snprintf(tmp, PROP_VALUE_MAX, "%d", revision);
+     property_set("ro.revision", tmp);
+@@ -926,25 +925,7 @@ static bool selinux_is_disabled(void)
+ 
+ static bool selinux_is_enforcing(void)
+ {
+-#ifdef ALLOW_DISABLE_SELINUX
+-    char tmp[PROP_VALUE_MAX];
+-
+-    if (property_get("ro.boot.selinux", tmp) == 0) {
+-        /* Property is not set.  Assume enforcing */
+-        return true;
+-    }
+-
+-    if (strcmp(tmp, "permissive") == 0) {
+-        /* SELinux is in the kernel, but we've been told to go into permissive mode */
+-        return false;
+-    }
+-
+-    if (strcmp(tmp, "enforcing") != 0) {
+-        ERROR("SELinux: Unknown value of ro.boot.selinux. Got: \"%s\". Assuming enforcing.\n", tmp);
+-    }
+-
+-#endif
+-    return true;
++    return false;
+ }
+ 
+ int selinux_reload_policy(void)
+@@ -1030,7 +1011,7 @@ static int charging_mode_booting(void)
+         return 0;
+ 
+     close(f);
+-    return ('1' == cmb);
++    return ('8' == cmb); // 8 means kernel off charging mode in MTK
+ #endif
+ }
+ 
+diff --git a/liblog/logd_write.c b/liblog/logd_write.c
+index b8fd9d5..62c494b 100644
+--- a/liblog/logd_write.c
++++ b/liblog/logd_write.c
+@@ -536,6 +536,26 @@ int __android_log_buf_write(int bufID, int prio, const char *tag, const char *ms
+     if (!tag)
+         tag = "";
+ 
++    // MediaTek: Prevent log spamming of audio.
++    if (!strstr(tag, "AudioMTKFilterManager") ||
++        !strstr(tag, "AudioMTKFilter") ||
++        !strstr(tag, "AudioMTKStreamOut") ||
++        !strstr(tag, "AudioVPWStreamIn") ||
++        !strstr(tag, "AudioDigitalControl") ||
++        !strstr(tag, "AudioLoopbackController") ||
++        !strstr(tag, "AudioMTKVolumeController") ||
++        !strstr(tag, "AudioDigitalControl") ||
++        !strstr(tag, "AudioAnalogControl") ||
++        !strstr(tag, "AudioAfeReg") ||
++        !strstr(tag, "AudioAnalogReg") ||
++        !strstr(tag, "AudioPlatformDevice") ||
++        !strstr(tag, "AudioMachineDevice") ||
++        !strstr(tag, "MtkAudioLoud") ||
++        !strstr(tag, "LoopbackManager") ||
++        !strstr(tag, "AudioInterConnection")) {
++            return 0;
++    }
++
+     /* XXX: This needs to go! */
+     if ((bufID != LOG_ID_RADIO) &&
+          (!strcmp(tag, "HTC_RIL") ||
+@@ -676,7 +696,6 @@ int __android_log_bswrite(int32_t tag, const char *payload)
+     return write_to_log(LOG_ID_EVENTS, vec, 4);
+ }
+ 
+-#ifdef MTK_HARDWARE
+ struct xlog_record {
+     const char *tag_str;
+     const char *fmt_str;
+@@ -686,33 +705,11 @@ struct xlog_record {
+ void __attribute__((weak)) __xlog_buf_printf(int bufid, const struct xlog_record *xlog_record, ...) {
+     va_list args;
+     va_start(args, xlog_record);
+-#if    HAVE_LIBC_SYSTEM_PROPERTIES
+-    int len = 0;
+-    int do_xlog = 0;
+-    char results[PROP_VALUE_MAX];
+-
+-
+-    // MobileLog
+-    len = __system_property_get ("debug.MB.running", results);
+-    if (len && atoi(results))
+-        do_xlog = 1;
+ 
+-    // ModemLog
+-    len = __system_property_get ("debug.mdlogger.Running", results);
+-    if (len && atoi(results))
+-        do_xlog = 1;
+-
+-    // Manual
+-    len = __system_property_get ("persist.debug.xlog.enable", results);
+-    if (len && atoi(results))
+-        do_xlog = 1;
+-
+-    if (do_xlog > 0)
+-#endif
+-        __android_log_vprint(xlog_record->prio, xlog_record->tag_str, xlog_record->fmt_str, args);
++    __android_log_vprint(xlog_record->prio, xlog_record->tag_str, xlog_record->fmt_str, args);
+ 
+     // get rid of "unused parameter 'bufid'"
+     bufid = bufid;
+     return;
+ }
+-#endif
++
+diff --git a/libutils/Android.mk b/libutils/Android.mk
+index 035846b..faff9e2 100644
+--- a/libutils/Android.mk
++++ b/libutils/Android.mk
+@@ -42,7 +42,8 @@ commonSources:= \
+ 	Tokenizer.cpp \
+ 	Unicode.cpp \
+ 	VectorImpl.cpp \
+-	misc.cpp
++	misc.cpp \
++	MediaTekDeps.cpp
+ 
+ host_commonCflags := -DLIBUTILS_NATIVE=1 $(TOOL_CFLAGS) -Werror
+ 
+diff --git a/libutils/MediaTekDeps.cpp b/libutils/MediaTekDeps.cpp
+new file mode 100644
+index 0000000..5c9ffef
+--- /dev/null
++++ b/libutils/MediaTekDeps.cpp
+@@ -0,0 +1,22 @@
++#include <stdlib.h>
++
++extern "C" {
++ void _ZN7android11IDumpTunnel11asInterfaceERKNS_2spINS_7IBinderEEE(){}
++ void _ZN7android11BufferQueueC1ERKNS_2spINS_19IGraphicBufferAllocEEE(){}
++ void _ZN7android22IGraphicBufferConsumer10BufferItemC1Ev(){}
++ void _ZN7android9CallStackC1EPKci(char const*, int);
++ void _ZN7android9CallStack6updateEii(int, int);
++
++ void _ZN7android9CallStackC1EPKcii(char const* logtag, int ignoreDepth, int maxDepth){
++  maxDepth = maxDepth-1;
++  maxDepth = maxDepth+1;
++  _ZN7android9CallStackC1EPKci(logtag, ignoreDepth);
++  
++ }
++
++ void _ZN7android9CallStack6updateEiii(int ignoreDepth, int maxDepth, int tid){
++  maxDepth = maxDepth-1;
++  maxDepth = maxDepth+1; 
++  _ZN7android9CallStack6updateEii(ignoreDepth, tid);
++ }
++}
+diff --git a/rootdir/init.rc b/rootdir/init.rc
+index 41d9a6b..e0ee638 100644
+--- a/rootdir/init.rc
++++ b/rootdir/init.rc
+@@ -561,16 +561,9 @@ service debuggerd /system/bin/debuggerd
+ service debuggerd64 /system/bin/debuggerd64
+     class main
+ 
+-service ril-daemon /system/bin/rild
+-    class main
+-    socket rild stream 660 root radio
+-    socket rild-debug stream 660 radio system
+-    user root
+-    group radio cache inet misc audio sdcard_rw qcom_diag log
+-
+ service surfaceflinger /system/bin/surfaceflinger
+     class core
+-    user system
++    user root
+     group graphics drmrpc
+     onrestart restart zygote
+ 
+@@ -581,7 +574,7 @@ service drm /system/bin/drmserver
+ 
+ service media /system/bin/mediaserver
+     class main
+-    user media
++    user root
+     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm qcom_diag
+     ioprio rt 4
+ 
