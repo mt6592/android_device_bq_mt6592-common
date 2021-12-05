@@ -42,7 +42,8 @@ PRODUCT_PACKAGES += \
     audio.primary.mt6592 \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default
+    audio.r_submix.default \
+    libaudioextras
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \

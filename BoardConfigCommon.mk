@@ -93,6 +93,9 @@ TARGET_BOARD_PLATFORM := mt8392
 # OTA
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := $(COMMON_PATH)/releasetools/ota_from_target_files
 
+# Shim Libraries
+TARGET_LDPRELOAD += libaudioextras.so
+
 # Sepolicy
 BOARD_SEPOLICY_DIRS := \
     $(COMMON_PATH)/sepolicy
