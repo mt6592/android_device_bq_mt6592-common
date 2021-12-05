@@ -50,6 +50,9 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/bluetooth/auto_pair_blacklist.conf:system/etc/bluetooth/auto_pair_blacklist.conf \
     $(COMMON_PATH)/configs/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
