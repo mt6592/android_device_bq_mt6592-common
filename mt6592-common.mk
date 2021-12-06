@@ -122,6 +122,9 @@ PRODUCT_COPY_FILES += \
 # Override GMS Client ID
 PRODUCT_GMS_CLIENTID_BASE := android-bq
 
+# GC Tag
+PRODUCT_TAGS += dalvik.gc.type-precise
+
 # Call the proprietary vendor makefile
 $(call inherit-product-if-exists, vendor/bq/mt6592-common/mt6592-common-vendor.mk)
 
