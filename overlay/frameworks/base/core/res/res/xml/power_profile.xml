@@ -1,34 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device name="Android">
     <item name="none">0</item>
-    <item name="screen.on">206.1</item>
-    <item name="screen.full">237.4</item>
-    <item name="bluetooth.active">26.2</item>
-    <item name="bluetooth.on">4.3</item>
-    <item name="wifi.on">4.1</item>
-    <item name="wifi.active">90.8</item>
-    <item name="wifi.scan">9.5</item>
-    <item name="dsp.audio">70.75</item>
-    <item name="dsp.video">351</item>
-    <item name="radio.active">31.7</item>
-    <item name="radio.scanning">189.6</item>
-    <item name="gps.on">0.2</item>
+    <item name="screen.on">257.2</item>
+    <item name="screen.full">786.8</item>
+    <item name="bluetooth.active">3.69</item>
+    <item name="bluetooth.on">2.85</item>
+    <item name="wifi.on">9.9</item>
+    <item name="wifi.active">74.1</item>
+    <item name="wifi.scan">144.1</item>
+    <item name="dsp.audio">42.35</item>
+    <item name="dsp.video">617.4</item>
+    <item name="radio.active">218.25</item>
+    <item name="radio.scanning">7.94</item>
+    <item name="gps.on">5.65</item>
     <array name="radio.on">
-        <value>11.9</value>
-        <value>11.9</value>
+        <value>3.12</value>
+        <value>2.905</value>
     </array>
     <array name="cpu.speeds">
-        <value>1209000</value>
-        <value>988000</value>
-        <value>754000</value>
-        <value>497250</value>
+        <value>728000</value>
+        <value>845000</value>
+        <value>1144000</value>
+        <value>1248000</value>
+        <value>1365000</value>
+        <value>1495000</value>
+        <value>1664000</value>
     </array>
-    <item name="cpu.idle">7.9</item>
+    <item name="cpu.idle">5.31</item>
     <array name="cpu.active">
-        <value>0.1</value>
-        <value>0.1</value>
-        <value>0.1</value>
-        <value>0.1</value>
+        <value>131.2</value>
+        <value>155.7</value>
+        <value>192.9</value>
+        <value>225.4</value>
+        <value>256.1</value>
+        <value>274.5</value>
+        <value>303.4</value>
     </array>
-    <item name="battery.capacity">8680</item>
+    <item name="battery.capacity">8620</item>
+    <array name="wifi.batchedscan">
+        <value>.0002</value>
+        <value>.002</value>
+        <value>.02</value>
+        <value>.2</value>
+        <value>2</value>
+    </array>
 </device>
