@@ -66,6 +66,7 @@
     <bool name="config_automatic_brightness_available">true</bool>
 
     <bool name="config_multiColorNotificationLed">true</bool>
+    <bool name="config_intrusiveBatteryLed">true</bool>
 
     <integer-array name="config_autoBrightnessLevels">
         <item>16</item>
