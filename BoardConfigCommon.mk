@@ -103,6 +103,9 @@ TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := $(COMMON_PATH)/releasetools/ota_fro
 # Shim Libraries
 TARGET_LDPRELOAD += libaudioextras.so
 
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
+
 # Sepolicy
 BOARD_SEPOLICY_DIRS := \
     $(COMMON_PATH)/sepolicy
