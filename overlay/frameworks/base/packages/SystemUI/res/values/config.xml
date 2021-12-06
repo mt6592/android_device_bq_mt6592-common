@@ -3,4 +3,7 @@
     <!-- Whether we're using the tablet-optimized recents interface (we use this
      value at runtime for some things) -->
     <bool name="config_recents_interface_for_tablets">true</bool>
+    
+    <!-- Whether to use cheap, less good looking shadows for recents -->
+    <bool name="config_recents_fake_shadows">true</bool>
 </resources>
