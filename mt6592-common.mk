@@ -95,6 +95,10 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
+# Camera
+PRODUCT_PACKAGES += \
+    Camera2
+
 # Graphics
 PRODUCT_PACKAGES += \
     libcorkscrew
