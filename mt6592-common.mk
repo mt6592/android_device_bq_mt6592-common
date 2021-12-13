@@ -90,6 +90,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.mt6592
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libfmjni
+
 # Graphics
 PRODUCT_PACKAGES += \
     libcorkscrew
