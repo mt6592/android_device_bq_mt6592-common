@@ -12,6 +12,15 @@ on early-init
     mkdir /protect_f 0771 system system
     mkdir /protect_s 0771 system system
 
+on charger
+    mount ext4 /emmc@android /system ro wait
+    start drvbd
+    start battery_charger
+    start servicemanager
+
+    # Disable USB
+    write /sys/devices/platform/mt_usb/cmode 0
+
 on init
     write /proc/bootprof "INIT: on init start"
 
@@ -762,6 +771,10 @@ on boot
 
     # Enable UART by default
     write /proc/mtprintk 1
+
+service battery_charger /charger
+    class charger
+    seclabel u:r:healthd:s0
 
 service ril-3gddaemon /system/bin/rild_dongle 
     class main
