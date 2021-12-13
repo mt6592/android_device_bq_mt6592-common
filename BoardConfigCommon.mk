@@ -106,7 +106,7 @@ TARGET_LDPRELOAD += libaudioextras.so
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 
-# Offline Charging
+# Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
