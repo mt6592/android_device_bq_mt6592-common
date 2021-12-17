@@ -375,6 +375,9 @@ on post-fs-data
     chown system media /dev/uibc
     chmod 0660 /dev/uibc
 
+    # Fix permission for telephony
+    chmod 0644 /proc/cmdline
+
     # TV-out
     chmod 0664 /dev/TV-out
 
