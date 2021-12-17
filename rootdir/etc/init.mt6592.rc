@@ -875,6 +875,7 @@ service aal /system/bin/aal
     class main
     user system
     group system graphics
+	disabled
 
 # WLAN Status
 on property:wlan.driver.status=ok
