@@ -110,7 +110,19 @@ on post-fs-data
     mkdir /data/nvram/md  2770 root nvram
 
     # CCCI
-    chown ccci ccci /sys/kernel/ccci/boot
+    chown radio radio /sys/kernel/ccci/boot
+    chown radio radio /dev/ccci_fs
+    chown radio radio /dev/ccci_fs
+    chown radio radio /dev/ccci_ioctl0
+    chown radio radio /dev/ccci_ioctl1
+    chown radio radio /dev/ccci_ipc_1220_0
+    chown radio radio /dev/ccci_md_log_rx
+    chown radio radio /dev/ccci_md_log_tx
+    chown radio radio /dev/ccci_monitor
+    chown radio radio /dev/ccci_pcm_rx
+    chown radio radio /dev/ccci_pcm_tx
+    chown radio radio /dev/ccci_uem_rx
+    chown radio radio /dev/ccci_uem_tx
 
     # Protect
     chown system system /protect_f
