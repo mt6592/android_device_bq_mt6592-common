@@ -61,6 +61,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
 # RIL
+PRODUCT_PACKAGES += \
+    gsm0710muxd \
+    gsm0710muxdmd2 \
+
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/ril/apns-conf.xml:system/etc/apns-conf.xml \
     $(COMMON_PATH)/configs/ril/spn-conf.xml:system/etc/spn-conf.xml \
