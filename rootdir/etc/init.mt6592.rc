@@ -727,6 +727,7 @@ on boot
 
     # AGPS
     mkdir /data/agps_supl 0771 gps system
+    mkdir /data/gps_mnl 0771 gps system
 
     # NFC
     mkdir /data/nfc_socket 0771 nfc radio
