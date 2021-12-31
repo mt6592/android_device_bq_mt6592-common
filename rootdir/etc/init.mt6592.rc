@@ -560,14 +560,14 @@ service md_minilog_util /system/bin/md_minilog_util
     oneshot
 
 service ccci_fsd /system/bin/ccci_fsd 0
-    user ccci
-    group  nvram ccci system
+    user root
+    group radio system
     class core
     oneshot
 
 service ccci_mdinit /system/bin/ccci_mdinit 0
-    user system
-    group  nvram ccci system
+    user root
+    group radio system
     class core
     oneshot
 
