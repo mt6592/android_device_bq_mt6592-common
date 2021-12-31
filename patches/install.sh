@@ -3,7 +3,7 @@
 echo $1
 rootdirectory="$PWD"
 
-dirs="system/core frameworks/base"
+dirs="system/core frameworks/base frameworks/opt/telephony packages/services/Telephony"
 
 # red + nocolor
 RED='\033[0;31m'
