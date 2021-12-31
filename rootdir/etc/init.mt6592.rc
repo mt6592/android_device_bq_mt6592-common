@@ -108,6 +108,9 @@ on post-fs-data
 
     # Modem related device nodes
     mkdir /data/nvram/md  2770 root nvram
+	
+    # Radio
+    mkdir /dev/radio 0770 radio radio
 
     # CCCI
     chown radio radio /sys/kernel/ccci/boot
