@@ -71,7 +71,8 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-efgid1.xml:system/etc/virtual-spn-conf-by-efgid1.xml \
     $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-efspn.xml:system/etc/virtual-spn-conf-by-efspn.xml \
     $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-efpnn.xml:system/etc/virtual-spn-conf-by-efpnn.xml \
-    $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-imsi.xml:system/etc/virtual-spn-conf-by-imsi.xml    
+    $(COMMON_PATH)/configs/ril/virtual-spn-conf-by-imsi.xml:system/etc/virtual-spn-conf-by-imsi.xml \
+    $(COMMON_PATH)/configs/ril/oper.lis:system/etc/ril/oper.lis
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
