@@ -380,7 +380,7 @@ on post-fs-data
 
     # Devmap
     exec /system/bin/mknod /dev/devmap c 196 0;
-    chmod 0440 /dev/devmap
+    chmod 0444 /dev/devmap
     chown root system /dev/devmap
 
     # BT (UART)
