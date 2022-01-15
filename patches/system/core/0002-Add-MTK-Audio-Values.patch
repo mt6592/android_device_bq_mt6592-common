@@ -1,0 +1,29 @@
+From 8efc89c03c4b6cde82626212f359ce23b87c0a82 Mon Sep 17 00:00:00 2001
+From: fire855 <thefire855@gmail.com>
+Date: Fri, 29 Jan 2016 17:32:31 +0100
+Subject: [PATCH] Add mtk audio values
+
+---
+ include/system/audio.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/include/system/audio.h b/include/system/audio.h
+index 093da96e180..e99a813cc98 100644
+--- a/include/system/audio.h
++++ b/include/system/audio.h
+@@ -153,6 +153,15 @@ typedef enum {
+ #ifdef QCOM_HARDWARE
+     AUDIO_SOURCE_FM_RX               = 10,
+     AUDIO_SOURCE_FM_RX_A2DP          = 11,
++#endif
++#ifdef MTK_HARDWARE
++    AUDIO_SOURCE_VOICE_UNLOCK = 80,
++    AUDIO_SOURCE_CUSTOMIZATION1 = 81,
++    AUDIO_SOURCE_CUSTOMIZATION2 = 82,
++    AUDIO_SOURCE_CUSTOMIZATION3 = 83,
++    AUDIO_SOURCE_ANC = 97,
++    AUDIO_SOURCE_MATV = 98,
++    AUDIO_SOURCE_FM = 99,
+ #endif
+     AUDIO_SOURCE_CNT,
+     AUDIO_SOURCE_MAX                 = AUDIO_SOURCE_CNT - 1,
