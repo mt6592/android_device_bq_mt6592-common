@@ -1,0 +1,26 @@
+From 4e0764410a884acff56b7d7841a0d6df8be3ccdd Mon Sep 17 00:00:00 2001
+From: fire855 <thefire855@gmail.com>
+Date: Fri, 25 Sep 2015 21:49:30 +0200
+Subject: [PATCH] Add fm radio value
+
+Former-commit-id: 5f055dafee410f4f0b535e6bc360f21cd7661bee
+---
+ media/java/android/media/MediaRecorder.java | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/media/java/android/media/MediaRecorder.java b/media/java/android/media/MediaRecorder.java
+index aafa07b03bc69..bea2ce806971c 100644
+--- a/media/java/android/media/MediaRecorder.java
++++ b/media/java/android/media/MediaRecorder.java
+@@ -234,6 +234,11 @@ private AudioSource() {}
+          */
+         public static final int FM_TUNER = 1998;
+ 
++        /**
++         * {@hide}
++         */
++        public static final int FM = 99;
++
+         /**
+          * Audio source for preemptible, low-priority software hotword detection
+          * It presents the same gain and pre processing tuning as {@link #VOICE_RECOGNITION}.
