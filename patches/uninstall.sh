@@ -2,7 +2,7 @@
 
 rootdirectory="$PWD"
 
-dirs="system/core frameworks/base frameworks/opt/telephony packages/services/Telephony frameworks/av"
+dirs="system/core frameworks/base frameworks/opt/telephony packages/services/Telephony frameworks/av bionic"
 
 for dir in $dirs ; do
 	cd $rootdirectory
