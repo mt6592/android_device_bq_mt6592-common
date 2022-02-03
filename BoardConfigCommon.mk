@@ -101,6 +101,7 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 TARGET_BOARD_PLATFORM := mt8392
 
 # OTA
+TARGET_OTA_ASSERT_DEVICE := kaito,kaito_wifi,Aquaris_E10_3G,Aquaris_E10
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := $(COMMON_PATH)/releasetools/ota_from_target_files
 
 # Shim Libraries
