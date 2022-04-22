@@ -153,5 +153,8 @@ $(call inherit-product-if-exists, vendor/bq/mt6592-common/mt6592-common-vendor.m
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-# HWUI
+# Dalvik
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+
+# HWUI
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
